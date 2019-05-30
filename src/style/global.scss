@@ -1,0 +1,272 @@
+body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video { margin:0;padding:0;}
+
+ol,li,ul,dl,dt,dd{list-style:none;}
+
+table{border-collapse:collapse;border-spacing:0}
+
+h1,h2,h3,h4,h5,h6,i,strong {font-weight: normal;}  
+
+img {vertical-align: middle;border: none;width: 100%;}  
+i {font: inherit;}  
+*{
+    font-family: "Helvetica Neue",
+    Helvetica,
+    "PingFang SC",
+    "Hiragino Sans GB",
+    "Microsoft YaHei",
+    "微软雅黑",
+    Arial,
+    sans-serif;
+}
+a {color: #fff;text-decoration: none;-webkit-tap-highlight-color: rgba(0, 0, 0, 0); background-color:transparent;}
+
+a:hover {text-decoration: underline; outline: none;}  
+
+select::-ms-expand { display: none; }  
+
+a:active,a:hover{outline:0}
+.noLine {
+    text-decoration: none;
+}
+.clearfix::before,
+.clearfix::after{
+    content: '';
+    display: block;
+    height: 0;
+    line-height: 0;
+    visibility: hidden;
+    clear: both;
+
+}
+
+.fl{ float:left;}
+.fr{float:right;}
+
+input,select,option{vertical-align:middle;border-radius:0px;-webkit-tap-highlight-color: rgba(0, 0, 0, 0);outline: none;}
+
+input[type="text"],input[type="button"],input[type="submit"],input[type="reset"]{border-radius: 0;outline: none;}  
+
+.overflow {overflow:hidden; }
+
+.ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.waveBtn1 {//动态按钮
+    // -webkit-animation: twinkling 1s infinite ease-in-out 
+    -webkit-animation: twinkling1 linear 2s 1.5s infinite;
+    -moz-animation: twinkling1 linear 2s 1.5s infinite;
+    animation: twinkling1 linear 2s 1.5s infinite;
+}
+
+.waveBtn2 {
+    // -webkit-animation: twinkling 1s infinite ease-in-out 
+    -webkit-animation: twinkling1 linear 2s 1.5s infinite;
+    -moz-animation: twinkling1 linear 2s 1.5s infinite;
+    animation: twinkling1 linear 2s 1.5s infinite;
+}
+
+.waveBtn3 {
+    // -webkit-animation: twinkling 1s infinite ease-in-out 
+    -webkit-animation: twinkling1 linear 2s 1.5s infinite;
+    -moz-animation: twinkling1 linear 2s 1.5s infinite;
+    animation: twinkling1 linear 2s 1.5s infinite;
+}
+
+@keyframes twinkling1 {
+    0% {
+        // box-shadow: inset -1px 1px 3px 2px #444444, inset 1px -1px 3px 2px #222222, 0 0 0px 0 #b2ff1a;
+        box-shadow: inset -1px 1px 3px 2px #fff, inset 1px -1px 3px 2px #fff, 0 0 0px 0 #795548;
+    }
+
+    50% {
+        box-shadow: inset -1px 1px 3px 2px #f0612c, inset 1px -1px 3px 2px #f0612c, 0 0 20px 0 #795548;
+    }
+
+    100% {
+        box-shadow: inset -1px 1px 3px 2px #f0612c, inset 1px -1px 3px 2px #f0612c, 0 0 0px 0 #795548;
+    }
+}
+
+@keyframes twinkling2 {
+    0% {
+        // box-shadow: inset -1px 1px 3px 2px #444444, inset 1px -1px 3px 2px #222222, 0 0 0px 0 #b2ff1a;
+        box-shadow: inset -1px 1px 3px 2px #fff, inset 1px -1px 3px 2px #fff, 0 0 0px 0 #795548;
+    }
+
+    50% {
+        box-shadow: inset -1px 1px 3px 2px #ff8d26, inset 1px -1px 3px 2px #ff8d26, 0 0 20px 0 #795548;
+    }
+
+    100% {
+        box-shadow: inset -1px 1px 3px 2px #ff8d26, inset 1px -1px 3px 2px #ff8d26, 0 0 0px 0 #795548;
+    }
+}
+
+@keyframes twinkling3 {
+    0% {
+        // box-shadow: inset -1px 1px 3px 2px #444444, inset 1px -1px 3px 2px #222222, 0 0 0px 0 #b2ff1a;
+        box-shadow: inset -1px 1px 3px 2px #fff, inset 1px -1px 3px 2px #fff, 0 0 0px 0 #795548;
+    }
+
+    50% {
+        box-shadow: inset -1px 1px 3px 2px #f0612c, inset 1px -1px 3px 2px #f0612c, 0 0 20px 0 #795548;
+    }
+
+    100% {
+        box-shadow: inset -1px 1px 3px 2px #f0612c, inset 1px -1px 3px 2px #f0612c, 0 0 0px 0 #795548;
+    }
+}
+
+/*  加载图    Start*/
+#loadingWave {
+    height: 100%;
+    width: 100%;
+    // background-color: #31455A;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    position: fixed;
+    margin-top: 0px;
+    top: 0px;
+    z-index: 1000;
+}
+
+#loadingWave-center {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+
+#loadingWave-center-absolute {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    height: 50px;
+    width: 150px;
+    margin-top: -25px;
+    margin-left: -75px;
+
+}
+
+.object {
+    width: 8px;
+    height: 50px;
+    margin-right: 5px;
+    background-color: #ccc;
+    -webkit-animation: animate 1s infinite;
+    animation: animate 1s infinite;
+    float: left;
+}
+
+.object:last-child {
+    margin-right: 0px;
+}
+
+.object:nth-child(10) {
+    -webkit-animation-delay: 0.9s;
+    animation-delay: 0.9s;
+}
+
+.object:nth-child(9) {
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+}
+
+.object:nth-child(8) {
+    -webkit-animation-delay: 0.7s;
+    animation-delay: 0.7s;
+}
+
+.object:nth-child(7) {
+    -webkit-animation-delay: 0.6s;
+    animation-delay: 0.6s;
+}
+
+.object:nth-child(6) {
+    -webkit-animation-delay: 0.5s;
+    animation-delay: 0.5s;
+}
+
+.object:nth-child(5) {
+    -webkit-animation-delay: 0.4s;
+    animation-delay: 0.4s;
+}
+
+.object:nth-child(4) {
+    -webkit-animation-delay: 0.3s;
+    animation-delay: 0.3s;
+}
+
+.object:nth-child(3) {
+    -webkit-animation-delay: 0.2s;
+    animation-delay: 0.2s;
+}
+
+.object:nth-child(2) {
+    -webkit-animation-delay: 0.1s;
+    animation-delay: 0.1s;
+}
+
+@-webkit-keyframes animate {
+
+    50% {
+        -ms-transform: scaleY(0);
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+
+    }
+}
+
+@keyframes animate {
+    50% {
+        -ms-transform: scaleY(0);
+        -webkit-transform: scaleY(0);
+        transform: scaleY(0);
+    }
+
+
+}
+
+.loadTipsAct {
+    position: absolute;
+    top: -120px;
+    left: -160px;
+    width: 470px;
+    height: 80px;
+    line-height: 80px;
+    font-size: 40px;
+    text-align: center;
+    color: #000;
+}
+
+/*  加载图    End*/
+/* box-sizing */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* 文字兩端對齊
+两端对齐
+ html
+<div>姓名</div>
+<div>手机号码</div>
+<div>账号</div>
+<div>密码</div>
+div {
+    margin: 10px 0; 
+    width: 100px;
+    border: 1px solid red;
+    text-align: justify;
+    text-align-last:justify
+}
+div:after{
+    content: '';
+    display: inline-block;
+    width: 100%;
+}
+*/
