@@ -22,6 +22,24 @@ Vue.use(Router)
       component: () => import('./views/index/index.vue')
     },
     {
+      path: '/rank/:id',
+      name: 'rank',
+      meta: {
+        title: "智慧康养平台", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/rank/index.vue')
+    },
+    {
+      path: '/category/:id',
+      name: 'category',
+      meta: {
+        title: "分类", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/category/index.vue')
+    },
+    {
       path: '/search',
       name: 'search',
       meta: {

@@ -9,8 +9,9 @@ import './style/global.scss' // A modern alternative to CSS resets
 import animate from 'animate.css'
 import Util from './util/util'
 import { mapMutations, mapGetters } from 'vuex';
-import ToccMap from './components/map'
-Vue.use(ToccMap)
+// import ToccMap from './components/map'
+import 'lib-flexible/flexible.js'
+// Vue.use(ToccMap)
 
 import echarts from 'echarts' //引入echarts
 Vue.prototype.$echarts = echarts //引入组件
