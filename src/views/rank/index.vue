@@ -102,6 +102,7 @@ export default {
             sort:'default',
             categoryId:''
           }
+          
           this.params[this.$route.params.id] =1;
           this.getGoodsList(params);
         },200),
