@@ -121,4 +121,8 @@ export default {
     GetShareGoods: NewApiRootUrl + 'user/getShareGoods', //获取分享历史
     WithdrawCashes: NewApiRootUrl + 'user/withdrawCashes', //提现
     SetFid: NewApiRootUrl + 'mlsuser/setFid', //mlsuser/setFid
+
+    topicDetail:NewApiRootUrl + 'topic/detail', 
+    TopicSign:NewApiRootUrl + 'topic/sign', 
+
 };

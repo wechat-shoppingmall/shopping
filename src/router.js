@@ -57,6 +57,17 @@ Vue.use(Router)
       },
       component: () => import('./views/productDetail/index.vue')
     },
+
+
+    {//活动签到页
+      path: '/topicSign',
+      name: 'topicSign',
+      meta: {
+        title: "活动签到页", //要现实的title
+        show: false               //设置导航隐藏显示
+      },
+      component: () => import('./views/topicSign/index.vue')
+    },    
     
   ]
 })
