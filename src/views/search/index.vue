@@ -1,18 +1,35 @@
 <template>
-  <div id="index">
+  <div class="search">
     <search
       @result-click="resultClick"
       @on-change="getResult"
       :results="results"
       v-model="value"
-      position="absolute"
       auto-scroll-to-top
       @on-focus="onFocus"
       @on-cancel="onCancel"
       @on-submit="onSubmit"
       placeholder='四件套'
       ref="search"></search>
-     
+      <div class="historySearch bgc">
+        <div class="title clearfix">
+          <div class="tk fl">历史记录</div>
+          <i class="iconfont icon-delete fr"></i>
+        </div>
+        <div class="keyWords clearfix">
+          <ul>
+            <li>阿道夫</li>
+          </ul>
+        </div>
+      </div>
+      <div class="hotSearch bgc clearfix">
+        <div class="title">热门搜索</div>
+        <div class="keyWords">
+          <ul>
+            <li>阿道夫</li>
+          </ul>
+        </div>
+      </div>
   </div>
 </template>
 
@@ -21,8 +38,9 @@
 import Util from '@/util/util'
 import {mapState, mapGetters ,mapMutations} from 'vuex'
 import { Search,AlertModule,Group,Cell, } from 'vux'
+import { SearchIndex, } from '@/api/index'
 export default {
-    name: 'index',
+    name: 'search',
     data() {
         return {
           results: [],
@@ -38,6 +56,9 @@ export default {
         
     },
     methods: {
+      ...mapMutations([
+          'UPDATE_TABBAR'
+      ]),
       resultClick (item) {
         window.alert('you click the result item: ' + JSON.stringify(item))
       },
@@ -58,11 +79,18 @@ export default {
       },
       onCancel () {
         console.log('on cancel')
+      },
+      initSearch(){
+        SearchIndex().then(res=>{
+          console.log('res',res);
+          
+        })
       }
-      
     },
     mounted(){
-        this.$refs.search.setFocus()
+      this.initSearch();
+      this.UPDATE_TABBAR({isTabBar:false})
+      this.$refs.search.setFocus()
       // AlertModule.show({
       //     title: 'VUX is Cool',
       //     content: 'Do you agree?',
@@ -80,14 +108,39 @@ export default {
 }
 </script>
 <style lang='scss'>
-  #index{
+  .search{
+    padding-top: 44px;
+    min-height:100%;
+    background: #f4f4f4;
     .weui-search-bar{
       background: transparent;
     }
     .weui-search-bar__label{
       top:5px!important;
     }
-    
+    .title{
+      
+      color:#333;
+      font-size: 13px;
+    }
+    .keyWords{
+      color:#333;
+      padding: 15px 0;
+    }
+    .bgc{
+      background: #fff;
+      padding: 15px;
+    }
+    .historySearch{
+      margin-bottom: 10px;
+    }
+    ul{
+      li{
+        float: left;
+        padding: 5px 8px;
+        border: 1px solid #999;
+      }
+    }
   }
 
 </style>

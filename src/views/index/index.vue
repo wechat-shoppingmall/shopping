@@ -15,12 +15,12 @@
         <div class="goodsTitle">新品首发</div>
         <x-button mini plain link="/rank/isNew">更多</x-button>
       </div>
-      <ul class="goodsList clearfix" v-if="newGoodsList.length>0">
-        <li v-for='(item,i) in newGoodsList' :key='i' class="fl">
+      <ul class="goodsList clearfix" v-if="newGoodsList.length>0" >
+        <router-link tag="li" v-for='(item,i) in newGoodsList' :key='i' class="fl" :to="/productDetail/+item.id">
           <img :src="item.list_pic_url" alt="">
           <div class="name ellipsis">{{item.name}}</div>
           <div class="jf">{{item.retail_price}}<span style='font-size:16px;'>积分</span></div>
-        </li>
+        </router-link>
       </ul>
     </div>
     <div class='recommend'><!-- 人气推荐 -->
@@ -29,14 +29,14 @@
         <x-button mini plain link="/rank/isHot">更多</x-button>
       </div>
       <ul class="goodsList" v-if="hotGoodsList.length>0">
-        <li v-for='(item,i) in hotGoodsList' :key='i' class='clearfix'>
+        <router-link tag="li" v-for='(item,i) in hotGoodsList' :key='i' class='clearfix' :to="/productDetail/+item.id">
           <img :src="item.list_pic_url" alt="" class="fl">
           <div class="rP fl" >
             <div class="name ellipsis">{{item.name}}</div>
             <div class="brief ellipsis">{{item.goods_brief}}</div>
             <div class="jf">{{item.retail_price}}<span style='font-size:16px;'>积分</span></div>
           </div>
-        </li>
+        </router-link>
       </ul>
     </div>
     <div class='newGoods' v-for='(x,index) in categoryList' :key='index' v-if="categoryList.length>0">
@@ -45,11 +45,11 @@
         <x-button mini plain :link="/category/+x.id">更多</x-button>
       </div>
       <ul class="goodsList clearfix">
-        <li v-for='(item,i) in x.goodsList' :key='i' class="fl">
+        <router-link tag="li" v-for='(item,i) in x.goodsList' :key='i' class="fl" :to="/productDetail/+item.id">
           <img :src="item.list_pic_url" alt="">
           <div class="name ellipsis">{{item.name}}</div>
           <div class="jf">{{item.retail_price}}<span style='font-size:16px;'>积分</span></div>
-        </li>
+        </router-link>
       </ul>
     </div>
   </div>
@@ -141,6 +141,9 @@ export default {
           }
         })
       },
+      // toDetail(id){
+      //   this.$route.push({path:})
+      // }
     },
     mounted(){
       // console.log('isTabBar',this.isTabBar);
@@ -176,7 +179,8 @@ export default {
       background: transparent;
     }
     .weui-search-bar__label{
-      top:5px!important;
+      // top:5px!important;
+      line-height: 20px!important;
     }
     .searchBar{
       top:0;

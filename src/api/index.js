@@ -62,3 +62,17 @@ export function GoodsCategory(params) { //GoodsCategory: NewApiRootUrl + 'goods/
         params: params
     })
 }
+export function SearchIndex(params) { //搜索初始化
+    return request({
+        url: urls.SearchIndex,
+        method: 'get',
+        params: ''
+    })
+}
+export function GoodsDetail(params) { //商品详情1
+    return request({
+        url: urls.GoodsDetail,
+        method: 'get',
+        params: params
+    })
+}

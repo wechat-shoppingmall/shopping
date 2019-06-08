@@ -48,6 +48,15 @@ Vue.use(Router)
       },
       component: () => import('./views/search/index.vue')
     },
+    {
+      path: '/productDetail/:id',
+      name: 'productDetail',
+      meta: {
+        title: "商品详情", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/productDetail/index.vue')
+    },
     
   ]
 })
