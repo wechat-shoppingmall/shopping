@@ -24,19 +24,19 @@ module.exports = {
             }
         }
     },
-    configureWebpack: {
-        plugins: [
-            new webpack.ProvidePlugin({
-                jQuery: 'jquery',
-                $: 'jquery'
-            })
-        ],
-        externals:{
-            'AMap':'AMap',
-            'Loca': 'Loca',
-            'AMapUI': 'AMapUI'
-        }
-    },
+    // configureWebpack: {
+    //     plugins: [
+    //         new webpack.ProvidePlugin({
+    //             jQuery: 'jquery',
+    //             $: 'jquery'
+    //         })
+    //     ],
+    //     externals:{
+    //         'AMap':'AMap',
+    //         'Loca': 'Loca',
+    //         'AMapUI': 'AMapUI'
+    //     }
+    // },
     productionSourceMap: false,
     lintOnSave: false,
     chainWebpack: config => {
@@ -48,9 +48,22 @@ module.exports = {
             .set('@font', resolve('src/font'));
     },
     configureWebpack: config => {
-        require('vux-loader').merge(config, {
-            options: {},
-            plugins: ['vux-ui']
-        })
+         require('vux-loader').merge(config, {
+             options: {},
+             plugins: ['vux-ui']
+         })
+        return {
+            plugins: [
+                new webpack.ProvidePlugin({
+                    jQuery: 'jquery',
+                    $: 'jquery'
+                })
+            ],
+            externals: {
+                'AMap': 'AMap',
+                'Loca': 'Loca',
+                'AMapUI': 'AMapUI'
+            },
+        }
     }
 }

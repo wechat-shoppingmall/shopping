@@ -1,7 +1,7 @@
 <template>
   <div class="productDetail">
     <swiper :show-desc-mask='false' v-if='gallery.length>0' auto :list="gallery"  style="width:100%;margin:0 auto;" height="375px"  dots-position="center"></swiper>
-    <div class="brandTitle">
+    <div class="brandTitle" v-if='info'>
       <div class="jf clearfix">
         <div class="fl">
           <span class="red">{{info.info.retail_price}}</span><span class="red fb">积分</span>&nbsp;&nbsp;&nbsp;
@@ -11,21 +11,20 @@
       </div>
       <div class="nameBrand">
         <div class="bname">{{info.info.name}}</div>
-        <div class="bbran clearfix">
-          <div class="btitle">{{info.brand.name}}＞</div>
+        <div class="bbran clearfix" v-if="info.brand">
+          <div class="btitle" @click='toBrandList(info.brand)'>{{info.brand.name}}＞</div>
         </div>
       </div>
-      <div class="selectNum clearfix">
+      <div class="selectNum clearfix" @click='toTypeNum(info.specificationList)'>
         <span class="fl">请选择规格数量</span>
         <i class="iconfont icon-right-arrow fr"></i>
       </div>
     </div> 
-    <div class="productDes">
+    <div class="productDes" v-if='info'>
       <div class="ptitle">商品详情</div>
-      <div class="picsWords" v-html="info.info.goods_desc">
-      </div>
+      <div class="picsWords" v-html="info.info.goods_desc"></div>
     </div>
-    <div class="faq">
+    <div class="faq" v-if='info'>
       <divider class="ctitle">常见问题</divider>
       <div class="qaa">
         <ul>
@@ -39,8 +38,16 @@
         </ul>
       </div>
     </div>
-    <div class="relate">
+    <div class="relate"  v-if="related.length>0">
       <divider class="ctitle">大家都在看</divider>
+      <ul class="goodsList clearfix" >
+        <!-- <li  v-for='(item,i) in related' :key='i' class="fl" :to="/productDetail/+item.id"> -->
+        <li  v-for='(item,i) in related' :key='i' class="fl" @click="toDetail(item)">
+          <img :src="item.list_pic_url" alt="">
+          <div class="name ellipsis">{{item.name}}</div>
+          <div class="jf">{{item.retail_price}}<span style='font-size:16px;'>积分</span></div>
+        </li>
+      </ul>
     </div>
     <div class="buyBox clearfix">
       <div class="toHome fl icbox">
@@ -49,8 +56,10 @@
       <div class="toCollect fl icbox">
         <i class="iconfont icon-shoucang"></i>
       </div>
-      <div class="toShoppingCar fl icbox">
+      <div class="toShoppingCar fl icbox" badge="2"><!-- CartCount -->
         <i class="iconfont icon-gouwuchekong"></i>
+        <badge v-if='CartCount' :text="CartCount.cartTotal.goodsCount">
+        </badge>
       </div>
       <div class="btnBox fl clearfix">
         <div class="lijiBuy fl btn">立即购买</div>
@@ -64,8 +73,8 @@
 // @ is an alias to /src
 import Util from '@/util/util'
 import {mapState, mapGetters ,mapMutations} from 'vuex'
-import { AlertModule,Group,Cell,Swiper,Divider, } from 'vux'
-import { GoodsDetail, } from '@/api/index'
+import { Group,Swiper,Divider,Badge  } from 'vux'
+import { GoodsDetail,GoodsRelated,CartGoodsCount } from '@/api/index'
 
 export default {
     name: 'productDetail',
@@ -73,14 +82,15 @@ export default {
         return {
           pid:'',//商品ID;
           gallery:[],//轮播图,
-          info:'',//积分详情
+          info:'',//积分详情:
+          related:[],//大家都在看
+          CartCount:'',//购物车信息
         }
     },
     components: {
-      Group,
-      Cell,
       Swiper,
       Divider,
+      Badge,
     },
     computed: {
       ...mapGetters([
@@ -94,30 +104,56 @@ export default {
       getGoodsDetail(){
         GoodsDetail({id:this.pid}).then(res=>{
           // console.log('res',res);
-          this.info = res.data;
           if(res.errno ==0){//
+            this.info = res.data;
             res.data.gallery.map(x=>{
               x.url = 'javascript:';
               x.img = x.img_url;
               x.title = '';
             })
             this.gallery = res.data.gallery;
+            this.$nextTick(()=>{
+              $('.picsWords p img').css({width:'100%'});
+            })
           }
         })
       },
+      getGoodsRelated(){
+        GoodsRelated({id:this.pid}).then(res=>{
+          if(res.errno ==0){//
+            this.related = res.data.goodsList;
+          }
+        })
+      },
+      getCartGoodsCount(){
+        CartGoodsCount().then(res=>{
+          if(res.errno ==0){//
+            this.CartCount = res.data;
+          }
+        })
+      },
+      toDetail(item){
+        this.pid = item.id;
+        this.getGoodsDetail();
+        this.getGoodsRelated();
+        window.scrollTo(0,0);
+      },
+      toBrandList(item){
+        localStorage.setItem('brandInfo',JSON.stringify(item))
+        this.$router.push({path:'/brandList'})
+      },
+      toTypeNum(obj){
+        localStorage.setItem('specificationList',JSON.stringify(obj));
+        this.$router.push({path:'/typeNum'});
+      }
     },
     mounted(){
-      console.log('id',this.$route.params.id);
+      // console.log('id',this.$route.params.id);
       this.pid = this.$route.params.id;
       this.UPDATE_TABBAR({isTabBar:false});
       this.getGoodsDetail();
-      // this.getTotalCount();
-      // this.getIndexUrlNewGoods();
-      // this.getIndexUrlHotGoods();
-      // this.getIndexUrlCategory();
-      // console.log('fech',fechApi);
-      
-      
+      this.getGoodsRelated();
+      this.getCartGoodsCount();
     },
     beforeDestroy() {
 
@@ -125,6 +161,11 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
+.picsWords{
+  p img{
+    width: 100%!important;
+  }
+}
   .productDetail{
     background:#f4f4f4;
     margin-bottom: 50px;
@@ -181,9 +222,11 @@ export default {
       .ptitle{
         margin-bottom: 10px;
       }
+      
     }
     .faq{
       background: #fff;
+      font-size: 13px;
       .qaa{
         padding: 0 15px;
       }
@@ -211,12 +254,30 @@ export default {
       .ctitle{
         padding: 30px;
       }
+      .goodsList li{
+        width: 50%;
+        font-size: 15px;
+        img{
+          width: 175px;
+        }
+        .name,.jf{
+          text-align: center;
+          padding:3px 0;
+        }
+        .jf{
+          color:#b4282d;
+          font-size: 16px;
+        }
+      }
     }
     .buyBox{
       position: fixed;
       bottom: 0;
       width: 100%;
       background-color: #fff;
+      .vux-badge{
+        position: absolute;
+      }
       .icbox{
         width: 60px;
         height:50px;

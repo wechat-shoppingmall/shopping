@@ -76,3 +76,54 @@ export function GoodsDetail(params) { //商品详情1
         params: params
     })
 }
+
+export function GoodsRelated(params) { //商品详情页的关联商品（大家都在看）
+    return request({
+        url: urls.GoodsRelated,
+        method: 'get',
+        params: params
+    })
+}
+export function CartGoodsCount() { // 获取购物车商品件数
+    return request({
+        url: urls.CartGoodsCount,
+        method: 'get',
+        params: ''
+    })
+}
+//TopicList: NewApiRootUrl + 'topic/list', 
+export function TopicList(obj) { //专题列表
+    return request({
+        url: urls.TopicList,
+        method: 'get',
+        params: obj
+    })
+}
+export function IndexUrlTopic() { //IndexUrlTopic: NewApiRootUrl + 'index/topic', //公益一小时top3
+    return request({
+        url: urls.IndexUrlTopic,
+        method: 'get',
+        params: ''
+    })
+}
+export function TopicDetail(obj) { //TopicDetail: NewApiRootUrl + 'topic/detail', //专题详情
+    return request({
+        url: urls.TopicDetail,
+        method: 'get',
+        params: obj
+    })
+}
+export function TopicRelated(obj) { //TopicRelated: NewApiRootUrl + 'topic/related', //相关专题
+    return request({
+        url: urls.TopicRelated,
+        method: 'get',
+        params: obj
+    })
+}
+export function TopicEnroll(obj) { //TopicEnroll: NewApiRootUrl + 'topic/join', //参加活动
+    return request({
+        url: urls.TopicEnroll,
+        method: 'get',
+        params: obj
+    })
+}

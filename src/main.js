@@ -12,7 +12,10 @@ import { mapMutations, mapGetters } from 'vuex';
 // import ToccMap from './components/map'
 import 'lib-flexible/flexible.js'
 // Vue.use(ToccMap)
-
+import  { ConfirmPlugin,AlertPlugin,ToastPlugin,   } from 'vux'
+Vue.use(ConfirmPlugin)
+Vue.use(AlertPlugin)
+Vue.use(ToastPlugin)
 import echarts from 'echarts' //引入echarts
 Vue.prototype.$echarts = echarts //引入组件
 Vue.directive('posInt', function(el){//自定义输入框只能输入非0整数

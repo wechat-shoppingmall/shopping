@@ -57,6 +57,42 @@ Vue.use(Router)
       },
       component: () => import('./views/productDetail/index.vue')
     },
+    {
+      path: '/brandList',//品牌商品列表
+      name: 'brandList',
+      meta: {
+        title: "智慧康养平台", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/brandList/index.vue')
+    },
+    {
+      path: '/typeNum', //品牌商品列表
+      name: 'typeNum',
+      meta: {
+        title: "商品详情", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/typeNum/index.vue')
+    },
+    {
+      path: '/topic', //品牌商品列表
+      name: 'topic',
+      meta: {
+        title: "活动", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/topic/index.vue')
+    },
+    {
+      path: '/topicDetail/:id', //品牌商品列表
+      name: 'topicDetail',
+      meta: {
+        title: "活动详情", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/topicDetail/index.vue')
+    },
 
 
     {//活动签到页

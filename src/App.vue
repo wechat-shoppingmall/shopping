@@ -5,12 +5,12 @@
     </transition>
     <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
       <tabbar v-if='isTabBar'>
-        <tabbar-item selected>
+        <tabbar-item :selected="active=='/index'?true:false" link="/index">
           <img slot="icon" src="./assets/images/ic_menu_choice_nor.png">
           <img slot="icon-active" src="./assets/images/ic_menu_choice_pressed.png">
           <span slot="label">积分商城</span>
         </tabbar-item>
-        <tabbar-item >
+        <tabbar-item link="/topic" :selected="active=='/topic'?true:false">
           <img slot="icon" src="./assets/images/ic_menu_topic_nor.png">
           <img slot="icon-active" src="./assets/images/ic_menu_topic_pressed.png">
           <span slot="label">公益一小时</span>
@@ -40,7 +40,8 @@ export default {
   },
   data(){
     return{
-      history:''
+      history:'',
+      active:'',
     }
   },
   computed:{
@@ -53,7 +54,7 @@ export default {
    $route(to,from){
     const toIndex = this.history.getItem(to.path);
     const fromIndex = this.history.getItem(from.path);
-
+    this.active = to.path;
     if (toIndex) {
       if (!fromIndex || parseInt(toIndex, 10) > parseInt(fromIndex, 10) || (toIndex === '0' && fromIndex === '0')) {
         this.UPDATE_DIRECTION({
