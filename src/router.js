@@ -93,6 +93,15 @@ Vue.use(Router)
       },
       component: () => import('./views/topicDetail/index.vue')
     },
+    {
+      path: '/my', //品牌商品列表
+      name: 'my',
+      meta: {
+        title: "我的", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/index.vue')
+    },
 
 
     {//活动签到页

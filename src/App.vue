@@ -16,7 +16,7 @@
           <span slot="label">公益一小时</span>
         </tabbar-item>
         <!-- <tabbar-item selected link="/component/demo"> -->
-        <tabbar-item  >
+        <tabbar-item  link="/my" :selected="active=='/my'?true:false">
           <img slot="icon" src="./assets/images/ic_menu_me_nor.png">
           <img slot="icon-active" src="./assets/images/ic_menu_me_pressed.png">
           <span slot="label">我的</span>

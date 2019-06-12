@@ -1,5 +1,5 @@
 <template>
-  <div id="rank">
+  <div class="brandList">
     <div class="hotPic">
       <img :src="hotBanner.list_pic_url" :alt="hotBanner.name">
       <div class="info">
@@ -30,7 +30,7 @@ import { Search,AlertModule,Group,Cell,Swiper,SwiperItem,XButton } from 'vux'
 import { GoodsList } from '@/api/index'
 
 export default {
-    name: 'rank',
+    name: 'brandList',
     data() {
         return {
             hotBanner:'',
@@ -78,7 +78,7 @@ export default {
 }
 </script>
 <style lang='scss' scoped>
-  #rank{
+  .brandList{
     // margin-bottom: 100px;
     background-color: #eee;
     .hotPic{

@@ -51,13 +51,13 @@
     </div>
     <div class="buyBox clearfix">
       <div class="toHome fl icbox">
-        <i class="iconfont icon-home"></i>
+        <i class="iconfont icon-zhuye"></i>
       </div>
       <div class="toCollect fl icbox">
-        <i class="iconfont icon-shoucang"></i>
+        <i class="iconfont icon-shoucang1"></i>
       </div>
       <div class="toShoppingCar fl icbox" badge="2"><!-- CartCount -->
-        <i class="iconfont icon-gouwuchekong"></i>
+        <i class="iconfont icon-gouwuche"></i>
         <badge v-if='CartCount' :text="CartCount.cartTotal.goodsCount">
         </badge>
       </div>
