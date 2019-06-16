@@ -152,6 +152,9 @@ export default {
     background-color: #eee;
     .hotPic{
         position: relative;
+        img{
+          width: 100%;
+        }
         .info{
             position: absolute;
             top: 50%;

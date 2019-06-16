@@ -17,7 +17,8 @@
       </div>
       <ul class="goodsList clearfix" v-if="newGoodsList.length>0" >
         <router-link tag="li" v-for='(item,i) in newGoodsList' :key='i' class="fl" :to="/productDetail/+item.id">
-          <img :src="item.list_pic_url" alt="">
+          <img :src="item.list_pic_url" alt="" v-if='item.list_pic_url'>
+          <img src="../../assets/images/timg.jpg" alt="" v-if='!item.list_pic_url'>
           <div class="name ellipsis">{{item.name}}</div>
           <div class="jf">{{item.retail_price}}<span style='font-size:16px;'>积分</span></div>
         </router-link>
@@ -219,6 +220,7 @@ export default {
         font-size: 15px;
         img{
           width: 175px;
+          height: 175px;
         }
         
       }

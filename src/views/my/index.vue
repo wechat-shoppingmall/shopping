@@ -18,21 +18,21 @@
     <div class="myTopic">
       <div class="title clearfix">
         <div class="left fl">我的公益</div>
-        <div class="right fr">查看全部公益活动<i class="iconfont icon-right-arrow"></i></div>
+        <router-link tag='div' class="right fr" to='/myTopic/0'>查看全部公益活动<i class="iconfont icon-right-arrow"></i></router-link>
       </div>
       <div class="topArea clearfix">
-        <div class="hasApply fl">
+        <router-link tag='div' class="hasApply fl" to='/myTopic/1'>
           <i class="iconfont icon-yibaoming"></i>
           <span>已报名</span>
-        </div>
-        <div class="hasSign fl">
+        </router-link>
+        <router-link tag='div' class="hasSign fl" to='/myTopic/2'>
           <i class="iconfont icon-qiandao"></i>
           <span>已签到</span>
-        </div>
-        <div class="hasComplete fl">
+        </router-link>
+        <router-link tag='div' class="hasComplete fl" to='/myTopic/3'>
           <i class="iconfont icon-wancheng"></i>
           <span>已完成</span>
-        </div>
+        </router-link>
       </div>
     </div>
     <div class="myTopic">
@@ -56,10 +56,10 @@
         <div class="left fl">我的服务</div>
       </div>
       <div class="topArea clearfix">
-        <div class="hasApply fl">
+        <router-link tag='div' class="hasApply fl" to='/cart'>
           <i class="iconfont icon-gouwuche"></i>
           <span>购物车</span>
-        </div>
+        </router-link>
         <div class="hasSign fl">
           <i class="iconfont icon-yaoqinghaoyou"></i>
           <span>邀请好友</span>
@@ -68,22 +68,22 @@
           <i class="iconfont icon-tuijianshangpin"></i>
           <span>推荐商品</span>
         </div>
-        <div class="hasSign fl">
+        <router-link tag='div' class="hasSign fl" to='/collect'>
           <i class="iconfont icon-shoucang1"></i>
           <span>我的收藏</span>
-        </div>
-        <div class="hasSign fl">
+        </router-link>
+        <router-link tag='div' class="hasSign fl" to='/footPrint'>
           <i class="iconfont icon-wodezuji1"></i>
           <span>我的足迹</span>
-        </div>
-        <div class="hasSign fl">
+        </router-link>
+        <router-link tag='div' class="hasSign fl" to='/feedback'>
           <i class="iconfont icon-yijianfankui"></i>
           <span>意见反馈</span>
-        </div>
-        <div class="hasSign fl">
+        </router-link>
+        <router-link tag='div' class="hasSign fl" to='/address'>
           <i class="iconfont icon-dizhiguanli"></i>
           <span>地址管理</span>
-        </div>
+        </router-link>
         <div class="hasSign fl">
           <i class="iconfont icon-wodefensi"></i>
           <span>我的粉丝</span>

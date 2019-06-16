@@ -4,24 +4,26 @@
       <router-view></router-view>
     </transition>
     <transition :name="'vux-pop-' + (direction === 'forward' ? 'in' : 'out')">
-      <tabbar v-if='isTabBar'>
-        <tabbar-item :selected="active=='/index'?true:false" link="/index">
-          <img slot="icon" src="./assets/images/ic_menu_choice_nor.png">
-          <img slot="icon-active" src="./assets/images/ic_menu_choice_pressed.png">
-          <span slot="label">积分商城</span>
-        </tabbar-item>
-        <tabbar-item link="/topic" :selected="active=='/topic'?true:false">
-          <img slot="icon" src="./assets/images/ic_menu_topic_nor.png">
-          <img slot="icon-active" src="./assets/images/ic_menu_topic_pressed.png">
-          <span slot="label">公益一小时</span>
-        </tabbar-item>
-        <!-- <tabbar-item selected link="/component/demo"> -->
-        <tabbar-item  link="/my" :selected="active=='/my'?true:false">
-          <img slot="icon" src="./assets/images/ic_menu_me_nor.png">
-          <img slot="icon-active" src="./assets/images/ic_menu_me_pressed.png">
-          <span slot="label">我的</span>
-        </tabbar-item>
-      </tabbar>
+      <template v-if="routePath==='/index' || routePath==='/topic' || routePath==='/my'">
+        <tabbar v-if='isTabBar'>
+          <tabbar-item :selected="active=='/index'?true:false" link="/index">
+            <img slot="icon" src="./assets/images/ic_menu_choice_nor.png">
+            <img slot="icon-active" src="./assets/images/ic_menu_choice_pressed.png">
+            <span slot="label">积分商城</span>
+          </tabbar-item>
+          <tabbar-item link="/topic" :selected="active=='/topic'?true:false">
+            <img slot="icon" src="./assets/images/ic_menu_topic_nor.png">
+            <img slot="icon-active" src="./assets/images/ic_menu_topic_pressed.png">
+            <span slot="label">公益一小时</span>
+          </tabbar-item>
+          <!-- <tabbar-item selected link="/component/demo"> -->
+          <tabbar-item  link="/my" :selected="active=='/my'?true:false">
+            <img slot="icon" src="./assets/images/ic_menu_me_nor.png">
+            <img slot="icon-active" src="./assets/images/ic_menu_me_pressed.png">
+            <span slot="label">我的</span>
+          </tabbar-item>
+        </tabbar>
+      </template>
     </transition>
     <loading ></loading>
   </div>
@@ -42,6 +44,7 @@ export default {
     return{
       history:'',
       active:'',
+      routePath:'',
     }
   },
   computed:{
@@ -52,6 +55,7 @@ export default {
   },
   watch:{
    $route(to,from){
+    this.routePath = to.path;
     const toIndex = this.history.getItem(to.path);
     const fromIndex = this.history.getItem(from.path);
     this.active = to.path;
@@ -112,7 +116,7 @@ html,body{
 }
 
 #app {
-  /* height: 100%; */
+  height: 100%;
   width: 100%;
   z-index: 1;
 }

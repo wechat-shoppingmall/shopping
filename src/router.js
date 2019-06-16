@@ -102,6 +102,69 @@ Vue.use(Router)
       },
       component: () => import('./views/my/index.vue')
     },
+    {
+      path: '/myTopic/:id', //品牌商品列表
+      name: 'myTopic',
+      meta: {
+        title: "我的公益", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/myTopic.vue')
+    },
+    {
+      path: '/collect', //我的收藏
+      name: 'collect',
+      meta: {
+        title: "我的收藏", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/collect.vue')
+    },
+    {
+      path: '/cart', //购物车
+      name: 'cart',
+      meta: {
+        title: "购物车", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/cart.vue')
+    },
+    {
+      path: '/footPrint', //我的足迹
+      name: 'footPrint',
+      meta: {
+        title: "我的足迹", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/footPrint.vue')
+    },
+    {
+      path: '/feedback', //意见反馈
+      name: 'feedback',
+      meta: {
+        title: "意见反馈", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/feedback.vue')
+    },
+    {
+      path: '/address', //地址管理
+      name: 'address',
+      meta: {
+        title: "地址管理", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/address.vue')
+    },
+    {
+      path: '/addAddress', //地址管理
+      name: 'addAddress',
+      meta: {
+        title: "新增地址", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/addAddress.vue')
+    },
 
 
     {//活动签到页
