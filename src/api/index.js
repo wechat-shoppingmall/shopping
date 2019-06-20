@@ -127,3 +127,24 @@ export function TopicEnroll(obj) { //TopicEnroll: NewApiRootUrl + 'topic/join', 
         params: obj
     })
 }
+
+// export function getSignature(obj) { //获取微信签名
+//     return request.post({
+//         url: urls.getSignature,
+//         method: 'post',
+//         params: obj
+//     })
+// }
+export function getSignature(data) {//获取微信签名
+    return request.post(urls.getSignature,data).catch(function (error) {
+    });
+  }
+
+
+export function getOpenId(obj) { //将code传给后台
+    return request({
+        url: urls.getOpenId+"/"+obj,
+        method: 'get',
+    })
+}
+

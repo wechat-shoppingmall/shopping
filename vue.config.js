@@ -4,7 +4,7 @@ function resolve(dir) {
     return path.join(__dirname, dir)
 }
 module.exports = {
-    baseUrl:'/',
+    baseUrl:'/shopping_gzh/',
     outputDir:'itms-web',
     lintOnSave: false,
     assetsDir:'assets',

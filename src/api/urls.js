@@ -2,7 +2,7 @@
 
 //var NewApiRootUrl = 'http://dev.51shop.ink/multiuser/api/';
 //  var NewApiRootUrl = 'http://192.168.2.15:8080/platform-framework/api/';
-var NewApiRootUrl = 'https://getwellv.com/platform-framework/api/'
+var NewApiRootUrl = 'https://getwellv.com/api95/api/'
 // var NewApiRootUrl = 'http://dev.51shop.ink/demo/api/'
 // var NewApiRootUrl = 'https://fx.51shop.ink/drsshop/api/'
 export default {
@@ -124,5 +124,7 @@ export default {
 
     topicDetail:NewApiRootUrl + 'topic/detail', 
     TopicSign:NewApiRootUrl + 'topic/sign', 
+    getSignature:NewApiRootUrl + 'wechat/getSignature',
+    getOpenId:NewApiRootUrl + 'wechat/getOpenId',
 
 };

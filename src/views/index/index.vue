@@ -61,7 +61,7 @@
 import Util from '@/util/util'
 import {mapState, mapGetters ,mapMutations} from 'vuex'
 import { Search,AlertModule,Group,Cell,Swiper,SwiperItem,XButton } from 'vux'
-import { indexBanner,GoodsCount,IndexUrlNewGoods,IndexUrlHotGoods,IndexUrlCategory, } from '@/api/index'
+import { indexBanner,GoodsCount,IndexUrlNewGoods,IndexUrlHotGoods,IndexUrlCategory,getSignature,getOpenId } from '@/api/index'
 
 export default {
     name: 'index',
@@ -142,6 +142,74 @@ export default {
           }
         })
       },
+      getUrlParam(code) {
+        //获取url 参数
+        console.log("getUrlParam start...");
+        var reg = new RegExp("(^|&)" + code + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) {
+          return unescape(r[2]);
+        }
+        return null;
+      },
+      getCodeApi() {
+        var local = window.location.href;
+        console.log("local-->"+local);
+        if(local.indexOf("com") != -1){
+          //获取code
+          console.log("getCodeApi start...");
+          // const appid = "wx2baee88974266ac0"; 
+          const code = this.getUrlParam("code");
+          console.log(code);
+          //  local = 'https://www.zizuzf.com/api/wechat/getopenid?currurl=steward';
+          if (code == null || code == "") {
+            var appid = "";
+            let params={
+                jsURL:local
+                // .split("#")[0]
+            }
+            getSignature(params).then(res => {
+              if(res.code == 0){
+                appid = res.data.appId;
+                console.log("appid-->"+appid);
+                localStorage.access_token=res.data.access_token
+                let url =
+                "https://open.weixin.qq.com/connect/oauth2/authorize?appid=" +
+                appid +
+                "&redirect_uri=" +
+                encodeURIComponent(local) +
+                "&response_type=code&scope=snsapi_base&state=1#wechat_redirect";
+                console.log("url-->"+url);  
+                window.location.href = url;
+              }else{
+                console.log(res.msg)
+              }
+            })
+            .catch(res => {
+              console.log(res);
+            });
+            console.log(appid,165)
+            console.log("local-->"+local);
+            
+          } else {
+            console.log("getOpenIdApi start..."+code);
+            // localStorage.access_token=res.data.access_token
+            getOpenId(code).then(res => {
+              console.log(res);
+              if(res.code == 0){
+                localStorage.setItem("gzh_token", res.data.openid);
+              }else{
+                console.log(res.msg)
+              }
+            })
+            .catch(res => {
+              console.log(res);
+            });
+          }
+        }else{
+          localStorage.setItem("openId", "openid");
+        }
+      },        
       // toDetail(id){
       //   this.$route.push({path:})
       // }
@@ -154,6 +222,7 @@ export default {
       this.getIndexUrlNewGoods();
       this.getIndexUrlHotGoods();
       this.getIndexUrlCategory();
+      this.getCodeApi()
       // console.log('fech',fechApi);
       
       // AlertModule.show({

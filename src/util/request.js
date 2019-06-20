@@ -10,6 +10,13 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(config => {
   // console.log('config',config)
+  let token =localStorage.getItem('gzh_token')
+  if (token) {
+
+    config.headers.common['token'] =localStorage.getItem('gzh_token');
+    
+    }
+
   return config
 }, error => {
   // Do something with request error
@@ -58,6 +65,18 @@ service.interceptors.response.use(response => {
     return Promise.reject(error)
   }
 )
+
+export function post(url,data = {}){
+  return new Promise((resolve,reject) => {
+         axios.post(url,data)
+         .then(response => {
+           resolve(response.data);
+         },err => {
+           reject(err)
+         })
+  })
+}
+
 // export default{
 //   get(url, param={}) {
 //     return new Promise((resolve, reject) => {
