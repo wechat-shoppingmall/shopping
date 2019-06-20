@@ -15,7 +15,7 @@
           <div class="btitle" @click='toBrandList(info.brand)'>{{info.brand.name}}＞</div>
         </div>
       </div>
-      <div class="selectNum clearfix" @click='toTypeNum(info.specificationList)'>
+      <div class="selectNum clearfix" @click='toTypeNum(info)'>
         <span class="fl">请选择规格数量</span>
         <i class="iconfont icon-right-arrow fr"></i>
       </div>
@@ -62,8 +62,8 @@
         </badge>
       </div>
       <div class="btnBox fl clearfix">
-        <div class="lijiBuy fl btn">立即购买</div>
-        <div class="addShopcar fl btn">加入购物</div>
+        <div class="lijiBuy fl btn" @click='toTypeNum(info)'>立即购买</div>
+        <div class="addShopcar fl btn" @click='toTypeNum(info)'>加入购物</div>
       </div>
     </div>
   </div>
@@ -143,7 +143,7 @@ export default {
         this.$router.push({path:'/brandList'})
       },
       toTypeNum(obj){
-        localStorage.setItem('specificationList',JSON.stringify(obj));
+        localStorage.setItem('productInfo',JSON.stringify(obj));
         this.$router.push({path:'/typeNum'});
       }
     },
