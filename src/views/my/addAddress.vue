@@ -15,8 +15,8 @@
             <div class="check"><check-icon :value.sync="isDefault">设为默认地址</check-icon></div>
         </div>
         <div class="btns">
-            <x-button  class='btn fl bl' @click='addAddress'>取消</x-button>
-            <x-button type="warn" class='btn fl br' @click='addAddress'>保存</x-button>
+            <x-button  class='btn fl bl' @click.native='$router.go(-1)'>取消</x-button>
+            <x-button type="warn" class='btn fl br' @click.native='addAddress'>保存</x-button>
         </div>
     </div>
 </template>

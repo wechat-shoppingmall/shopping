@@ -1,11 +1,15 @@
 <template>
   <div id="typeNum">
-    <div class='newGoods' v-if='specialInfo'>
-        <div class="" >
-          <img :src="item.list_pic_url" alt="">
-          <div class="name ellipsis">{{item.name}}</div>
-          <div class="jf">{{item.retail_price}}<span style='font-size:16px;'>积分</span></div>
-        </div>
+    <div class='newGoods' >
+      <img :src="goodsList.src" alt="">
+      <div class="right">
+        <div class="name ellipsis">{{goodsList.price}}</div>
+        <div class="jf">已选择：请选择规格数量</div>
+      </div>
+    </div>
+    <div class="num">
+      <div>数量</div>
+      <x-number align='left' :min='1'></x-number>
     </div>
   </div>
 </template>
@@ -14,37 +18,36 @@
 // @ is an alias to /src
 import Util from '@/util/util'
 import {mapState, mapGetters ,mapMutations} from 'vuex'
-import { Search,AlertModule,Group,Cell,Swiper,SwiperItem,XButton } from 'vux'
+import { XNumber } from 'vux'
 import { GoodsList } from '@/api/index'
 
 export default {
     name: 'typeNum',
     data() {
         return {
-            hotBanner:'',
             params:{
                 page:1,
                 size:1000,
                 brandId:'',
             },
-            goodsList:[],
+            goodsList:{
+              src: 'https://clean-server.oss-cn-beijing.aliyuncs.com/dqx/20190531/2153262481b48a.png',
+              price: '60积分',
+              desc: '由各种物质组成的巨型球状天体，叫做星球。星球有一定的形状，有自己的运行轨道。',
+              url: '/component/cell'
+            },
             specialInfo:'',
         }
     },
     components: {
-      Search,
-      Group,
-      Cell,
-      Swiper,
-      SwiperItem,
-      XButton,
+      XNumber,
     },
     computed: {
         
     },
     methods: {
         ...mapMutations([
-            'UPDATE_TABBAR'
+            // 'UPDATE_TABBAR'
         ]),
         getGoodsList(params){//从居家-志趣8个分类
           GoodsList(params).then(res=>{
@@ -55,8 +58,7 @@ export default {
         },
     },
     mounted(){
-        this.UPDATE_TABBAR({isTabBar:false})
-        console.log('this.$route.params.id',JSON.parse(localStorage.getItem('specificationList')))
+        // console.log('this.$route.params.id',JSON.parse(localStorage.getItem('specificationList')))
         // this.hotBanner = JSON.parse(localStorage.getItem('brandInfo'));
         // this.params.brandId = this.hotBanner.id;
         // this.getGoodsList(this.params);
@@ -66,105 +68,42 @@ export default {
     },
 }
 </script>
-<style lang='scss' scoped>
+<style lang='scss'>
   #typeNum{
     // margin-bottom: 100px;
     background-color: #eee;
-    .hotPic{
-        position: relative;
-        img{
-            height: 145px;
-            width: 100%;
-        }
-        .info{
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-            .txt{
-                color: #fff;
-                font-size: 16px;
-            }
-            .line{
-                height: 1px;
-                margin: 8px auto;
-                background: #fff;
-                width: 50%;
-            }
-        }
-    }
-    .brandTxt{
-        font-size: 16px;
-        padding: 15px;
-        color: #666;
-        background: #fff;
-        margin-bottom: 10px;
-    }
-    .jf{
-      color:#b4282d;
-      font-size: 18px;
-      padding: 10px 0;
-    }
-    .fillColor{
-      fill: #b4282d;
-    }
-    .sortBox{
-      margin-bottom: 10px;
-      position: relative;
-      .checked{
-        color:#b4282d;
+    .newGoods{
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      color:#333;
+      background: #fff;
+      font-size: 14px;
+      img{
+        width: 72px;
+        height: 72px;
       }
-      .btn{
-        height: 40px;
-        width: 33.333%;
-        text-align: center;
-        line-height: 40px;
-        background: #fff;
-      }
-      .price{
-        display: flex;
-        justify-content: center;
-      }
-      .arrow{
-        margin-left: 5px;
+      .right{
+        flex:1;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        align-items: center;
-      }
-    }
-    .classifyBox{
-      position: absolute;
-        top: 40px;
-      padding: 10px;
-      background: #fff;
-      border-bottom: 1px solid #e0e0e0;
-      border-top: 1px solid #e0e0e0;
-      .tnt{
-        padding: 6px 9px;
-        border: 1px solid #7f7f7f;
-        display: inline-block;
-        margin: 10px;
-        color: #7f7f7f;
-      }
-      .activeTnt{
-        color:#b4282d;
-        border: 1px solid #b4282d;
-      }
-    }
-    .newGoods{
-    //   margin-bottom: 10px;
-      color:#333;
-      .goodsList li{
-        width: 50%;
-        font-size: 15px;
-        background: #fff;
-        padding:10px;
-        img{
-          width: 175px;
+        padding-left: 15px;
+        div{
+          padding: 5px 0;
         }
-        
       }
+    }
+    .num{
+      background-color: #fff;
+    }
+    .vux-number-selector{
+        padding:3px 5px!important;
+        height:auto!important;
+        svg{
+            width:18px!important;
+            height:18px!important;
+        }
     }
   }
 </style>

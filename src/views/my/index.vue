@@ -38,17 +38,17 @@
     <div class="myTopic">
       <div class="title clearfix">
         <div class="left fl">我的订单</div>
-        <div class="right fr">查看全部订单<i class="iconfont icon-right-arrow"></i></div>
+        <router-link tag='div' class="right fr" to='/myOrder/0'>查看全部订单<i class="iconfont icon-right-arrow"></i></router-link>
       </div>
       <div class="topArea clearfix">
-        <div class="hasApply fl red">
+        <router-link tag='div' class="hasApply fl red" to='/myOrder/1'>
           <i class="iconfont icon-daishouhuo"></i>
           <span>待收货</span>
-        </div>
-        <div class="hasSign fl red">
+        </router-link>
+        <router-link tag='div' class="hasSign fl red" to='/refund'>
           <i class="iconfont icon-tuikuan"></i>
           <span>退货/退款</span>
-        </div>
+        </router-link>
       </div>
     </div>
     <div class="myTopic">

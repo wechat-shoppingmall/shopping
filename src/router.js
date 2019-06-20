@@ -112,6 +112,24 @@ Vue.use(Router)
       component: () => import('./views/my/myTopic.vue')
     },
     {
+      path: '/myOrder/:id', //品牌商品列表
+      name: 'myOrder',
+      meta: {
+        title: "我的订单", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/order.vue')
+    },
+    {
+      path: '/refund', //品牌商品列表
+      name: 'refund',
+      meta: {
+        title: "退货/退款", //要现实的title
+        show: true               //设置导航隐藏显示
+      },
+      component: () => import('./views/my/refund.vue')
+    },
+    {
       path: '/collect', //我的收藏
       name: 'collect',
       meta: {
