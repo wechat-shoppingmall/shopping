@@ -10,7 +10,7 @@
     "animate.css": "^3.7.0",
     "babel-polyfill": "^6.26.0",
     "echarts": "^4.2.1",
-    "jquery": "^3.3.1",
+    "jquery": "^3.5.0",
     "lib-flexible": "^0.3.2",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
